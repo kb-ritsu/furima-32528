@@ -13,32 +13,32 @@
 ### Association
 
 -has_many :items
--has_one  :buys
+-has_many  :users_items
 
 ## itemsテーブル
-|Column    |Type      |Options                     |
-|----------|----------|----------------------------|
-|item_name |string    |null:false                  |
-|price     |string    |null:false                  |
-|category  |string    |null:false                  |
-|status    |string    |null:false                  |
-|fee       |boolean   |null:false                  |
-|place     |integer   |null:false                  |
-|seller    |references|null:false, foreign_key:true|
-|detail    |text      |null:false                  |
-
+|Column      |Type      |Options                     |
+|------------|----------|----------------------------|
+|name        |string    |null:false                  |
+|price       |integer   |null:false                  |
+|category_id |integer   |null:false                  |
+|status_id   |integer   |null:false                  |
+|fee_id      |string    |null:false                  |
+|place_id    |integer   |null:false                  |
+|user        |references|null:false, foreign_key:true|
+|detail      |text      |null:false                  |
+|date        |integer   |null:false
 
 ### Association
 
 -belongs_to :user
--has_one    :address
+-has_one    :users_item
 
 
 
 ## addressテーブル
 |Column       |Type      |Options                     |
 |-------------|----------|----------------------------|
-|prefecture   |string    |null:false                  |
+|prefecture_id|string    |null:false                  |
 |city         |string    |null:false                  |
 |address      |string    |null:false                  |
 |building     |string    |                            |
@@ -46,13 +46,13 @@
 
 ### Association
 
--has_many :buys
+-belongs_to :users_item
 
 
-## buysテーブル
+## users_itemsテーブル
 |Column       |Type      |Options                     |
 |-------------|----------|----------------------------|
-|buyer        |references|null:false, foreign_key:true|
-
+|user_id      |references|null:false, foreign_key:true|
+|item_id      |references|null:false, foreign_key:true|
 ### Association
--belongs_to :address
+-has_one :address
