@@ -1,17 +1,19 @@
 ## usersテーブル
-|Column    |Type   |Options   |
-|----------|-------|----------|
-|nickname  |string |null:false|
-|email     |string |null:false|
-|password  |string |null:false|
-|first_name|string |null:false|
-|last_name |string |null:false|
-|birthday  |integer|null:false|
+|Column              |Type   |Options   |
+|--------------------|-------|----------|
+|nickname            |string |null:false|
+|email               |string |null:false, unique: true|
+|encrypted_password  |string |null:false|
+|first_name          |string |null:false|
+|last_name           |string |null:false|
+|birthday            |date   |null:false|
+|first_katakana_name |string |null:false|
+|last_katakana_name  |string |null:false|
 
 ### Association
 
 -has_many :items
--has_one  :addresses
+-has_one  :buys
 
 ## itemsテーブル
 |Column    |Type      |Options                     |
@@ -38,11 +40,19 @@
 |-------------|----------|----------------------------|
 |prefecture   |string    |null:false                  |
 |city         |string    |null:false                  |
-|address      |integer   |null:false                  |
-|building     |string    |null:false                  |
-|phone_number |integer   |null:false                  |
+|address      |string    |null:false                  |
+|building     |string    |                            |
+|phone_number |string    |null:false                  |
 
 ### Association
 
--belongs_to :user
--belongs_to :item
+-has_many :buys
+
+
+## buysテーブル
+|Column       |Type      |Options                     |
+|-------------|----------|----------------------------|
+|buyer        |references|null:false, foreign_key:true|
+
+### Association
+-belongs_to :address
