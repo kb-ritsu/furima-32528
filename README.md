@@ -22,11 +22,11 @@
 |price       |integer   |null:false                  |
 |category_id |integer   |null:false                  |
 |status_id   |integer   |null:false                  |
-|fee_id      |string    |null:false                  |
+|fee_id      |integer   |null:false                  |
 |place_id    |integer   |null:false                  |
 |user        |references|null:false, foreign_key:true|
 |detail      |text      |null:false                  |
-|date        |integer   |null:false
+|day_id      |integer   |null:false
 
 ### Association
 
@@ -36,14 +36,14 @@
 
 
 ## addressテーブル
-|Column       |Type      |Options                     |
-|-------------|----------|----------------------------|
-|prefecture_id|string    |null:false                  |
-|city         |string    |null:false                  |
-|address      |string    |null:false                  |
-|building     |string    |                            |
-|phone_number |string    |null:false                  |
-
+|Column        |Type      |Options                     |
+|--------------|----------|----------------------------|
+|prefecture_id |string    |null:false, foreign_key:true|
+|city          |string    |null:false, foreign_key:true|
+|address       |string    |null:false, foreign_key:true|
+|building      |string    |foreign_key:true            |
+|phone_number  |string    |null:false, foreign_key:true|
+|address_number|string    |null:false, foreign_key:true|
 ### Association
 
 -belongs_to :users_item
@@ -52,7 +52,9 @@
 ## users_itemsテーブル
 |Column       |Type      |Options                     |
 |-------------|----------|----------------------------|
-|user_id      |references|null:false, foreign_key:true|
-|item_id      |references|null:false, foreign_key:true|
+|user         |references|null:false, foreign_key:true|
+|item         |references|null:false, foreign_key:true|
 ### Association
 -has_one :address
+-belongs_to :user
+-belongs_to :item
