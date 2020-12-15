@@ -6,6 +6,8 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
       @user.first_katakana_name = "タロウ"
       @user.last_katakana_name = "タナカ"
+      @user.first_name = "田中"
+      @user.last_name = "太郎"
     end
     it "全ての情報を入力すると登録できる" do
       expect(@user).to be_valid
@@ -96,6 +98,26 @@ RSpec.describe User, type: :model do
       @user.password_confirmation = "aaaaaa1"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it 'ユーザー本名は全角での入力が必須である' do
+      @user.first_name = "aaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
+    end
+    it 'ユーザー本名は全角での入力が必須である' do
+      @user.last_name = "aaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters.")
+    end
+    it 'ユーザー名の振り仮名は全角カタカナで入力が必須である' do
+      @user.first_katakana_name = "agaggggr"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First katakana name 全角カタカナのみで入力して下さい")
+    end
+    it 'ユーザー名の振り仮名は全角カタカナで入力が必須である' do
+      @user.last_katakana_name = "agaggggr"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last katakana name 全角カタカナのみで入力して下さい")
     end
     
   end
