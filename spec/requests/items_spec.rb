@@ -51,11 +51,6 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Day must be other than 0")
     end
-    it "priceが空では登録できないこと" do
-      @item.price = nil
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank")
-    end
     it "priceが文字では登録できないこと" do
       @item.price = "aaaa"
       @item.valid?
@@ -71,6 +66,15 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be less than 9999999")
     end
+    it "半角英数字混合では登録できない事" do
+      @item.price = "999a"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+    end
+    it "全角文字では登録できない事" do
+      @item.price ="９９９９９"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+    end
   end
-
 end
