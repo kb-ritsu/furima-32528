@@ -128,7 +128,7 @@
       <% @items.each do |item| %>
        <li class='list'>
         <div class='item-img-content'>
-         <%= link_to image_tag(item.image, class: "item-img" ), item_path(item.id),method: :get%>
+         <%= link_to image_tag(item.image, class: "item-img"), item_path(item.id), method: :get %>
           <%# 商品が売れていればsold outを表示しましょう %>
           <%# <div class='sold-out'>
             <span>Sold Out!!</span>
@@ -145,7 +145,7 @@
        </li>
          <% end %>
   
-   <% unless  Item.exists? %>
+     <% unless  Item.exists? %>
       <li class='list'>
         <%= link_to '#' do %>
          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -161,8 +161,8 @@
             </div>
           </div>
         </div>
-        <% end %>
       </li>
+     <% end %>
     </ul>
    <% end %>
   </div>
