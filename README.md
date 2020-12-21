@@ -38,7 +38,7 @@
 ## addressテーブル
 |Column        |Type      |Options                     |
 |--------------|----------|----------------------------|
-|prefecture_id |integer   |null:false                  |
+|place_id      |integer   |null:false                  |
 |city          |string    |null:false                  |
 |address       |string    |null:false                  |
 |building      |string    |                            |
