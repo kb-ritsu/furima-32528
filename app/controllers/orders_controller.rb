@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   before_action :authenticate_user!
   before_action :check
   before_action :item_user
@@ -8,6 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+
     @order = Order.new(order_params)
      if @order.valid?
        pay_item
