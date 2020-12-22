@@ -3,7 +3,9 @@ class Order
   attr_accessor :place_id, :city, :address, :building, :phone_number, :address_number, :token,:order_user_id, :item_id
 
  with_options presence: true do
-  validates :city, :address, :order_user_id,:item_id
+  validates :city, :address
+  validates :order_user_id
+  validates :item_id
   validates :place_id,  numericality: { other_than: 0 }
   validates :token
   validates :address_number, format: { with: /\A\d{3}[-]\d{4}\z/ }
