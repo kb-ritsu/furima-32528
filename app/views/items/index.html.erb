@@ -129,6 +129,7 @@
        <li class='list'>
         <div class='item-img-content'>
          <%= link_to image_tag(item.image, class: "item-img"), item_path(item.id), method: :get %>
+
          <% @users.each do |users|%>
           <% if item.id == users.item_id %>
            <div class='sold-out'>
@@ -136,6 +137,7 @@
            </div>
           <% end %>
          <%end%>
+
         </div>
         <div class="item-info">
           <h3 class="item-name">
