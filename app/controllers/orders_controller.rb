@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   def index
     @order = Order.new
     @item = Item.find(params[:item_id])
+ 
   end
  
   def new
@@ -12,6 +13,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
      if @order.valid?
        pay_item
+       binding.pry
        @order.save
        redirect_to root_path
      else
