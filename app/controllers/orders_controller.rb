@@ -33,12 +33,9 @@ class OrdersController < ApplicationController
   end
 
   def search
-    @users = UsersItem.all
-      @users.each do |user|
-         if @item.id == user.item.id
-           redirect_to root_path
-         end
-      end
+   if @item.id == @item.users_item.item_id 
+      redirect_to root_path
+   end
   end
 
   def item_user
@@ -46,6 +43,7 @@ class OrdersController < ApplicationController
       redirect_to root_path 
     end
   end
+
   def check
     @item = Item.find(params[:item_id])
   end

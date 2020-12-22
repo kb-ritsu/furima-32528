@@ -8,13 +8,11 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag @item.image, class:"item-box-img" %>
-         <% @users.each do |users|%>
-          <% if @item.id == users.item_id %>
+          <% if @item.id == @item.users_item.item_id %>
            <div class='sold-out'>
               <span>Sold Out!!</span>
            </div>
           <% end %>
-         <%end%>
     </div>
     <div class="item-price-box">
       <span class="item-price">

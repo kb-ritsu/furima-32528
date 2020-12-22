@@ -45,4 +45,9 @@ RSpec.describe Order, type: :model do
     expect(@order.errors.full_messages).to include("Phone number is invalid")
   end
 
+  it "建物番号のカラムが空でも登録できる" do
+    @order.building = nil
+    expect(@order).to be_valid
+  end
+
 end
