@@ -1,15 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check
+  before_action :item_user
   def index
     @order = Order.new
-    @item = Item.find(params[:item_id])
- 
+    search
   end
- 
-  def new
-  end
- 
+
   def create
-    @item = Item.find(params[:item_id])
     @order = Order.new(order_params)
      if @order.valid?
        pay_item
@@ -33,4 +31,23 @@ class OrdersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  def search
+    @users = UsersItem.all
+      @users.each do |user|
+         if @item.id == user.item.id
+           redirect_to root_path
+         end
+      end
+  end
+
+  def item_user
+    if @item.user_id == current_user.id
+      redirect_to root_path 
+    end
+  end
+  def check
+    @item = Item.find(params[:item_id])
+  end
+
 end
