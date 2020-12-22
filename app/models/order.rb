@@ -5,7 +5,7 @@ class Order
  with_options presence: true do
   validates :city, :address, :order_user_id,:item_id
   validates :place_id,  numericality: { other_than: 0 }
-  validates :token, presence: true
+  validates :token
   validates :address_number, format: { with: /\A\d{3}[-]\d{4}\z/ }
   validates :phone_number, format: {with: /\d{9,11}/}, length: {maximum: 11}
  end
