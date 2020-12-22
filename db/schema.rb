@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_12_21_101205) do
     t.integer "place_id", null: false
     t.string "city", default: "", null: false
     t.string "address", default: "", null: false
-    t.string "building", default: "", null: false
+    t.string "building", default: ""
     t.string "phone_number", default: "", null: false
     t.bigint "users_item_id", null: false
     t.string "address_number", default: "", null: false
