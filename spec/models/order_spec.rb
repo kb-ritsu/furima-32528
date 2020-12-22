@@ -50,4 +50,10 @@ RSpec.describe Order, type: :model do
     expect(@order).to be_valid
   end
 
+  it "電話番号が１１文字より多い場合は登録できない" do
+    @order.phone_number = "012345678901"
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+  end
+
 end

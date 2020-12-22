@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   before_action :user_check, only: [:edit, :update,:destroy]
   def index
     @items = Item.includes(:user).order("created_at DESC")
-    @users = UsersItem.all
   end
 
   def new
@@ -21,7 +20,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @users = UsersItem.all
   end
 
   def edit
