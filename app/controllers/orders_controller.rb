@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
   def item_user
     if @item.user_id == current_user.id
       redirect_to root_path 
-    elsif @item.id == @item.users_item.item_id
+    elsif @item.users_item
       redirect_to root_path
     end
   end
